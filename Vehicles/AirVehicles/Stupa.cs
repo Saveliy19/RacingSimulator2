@@ -9,20 +9,20 @@ namespace LR1.Vehicles.AirVehicles
 {
     internal class Stupa: AirVehicle 
     {
-        private int accelerationCoefficient = 0;
-        private int speed = 4;
-        protected override int AccelerationCoefficient => accelerationCoefficient;
+        private int _accelerationCoefficient = 0;
+        private int _speed = 4;
+        protected override int AccelerationCoefficient => _accelerationCoefficient;
 
         public override int DistanceTraveled => distanceTraveled;
 
-        protected override int Speed => speed;
+        protected override int Speed => _speed;
 
         public override void Move()
         {
-            distanceTraveled = speed * timeTraveled + (accelerationCoefficient * timeTraveled * timeTraveled) / 2;
+            distanceTraveled = _speed * timeTraveled + (_accelerationCoefficient * timeTraveled * timeTraveled) / 2;
             //Console.WriteLine($"Дистанция ступы - {distanceTraveled.ToString()} Время ступы {timeTraveled.ToString()}");
             //Console.WriteLine();
-            accelerationCoefficient = (int)Math.Round(Math.Log10(distanceTraveled));
+            _accelerationCoefficient = (int)Math.Round(Math.Log10(distanceTraveled));
             timeTraveled++;
 
         }

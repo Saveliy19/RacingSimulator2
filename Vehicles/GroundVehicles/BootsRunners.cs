@@ -13,25 +13,25 @@ namespace LR1.Vehicles.GroundVehicles
         // + средняя выносливость
         // + быстрое восстановление
 
-        private int maxTravelTime = 5;
-        private int restDuration = 1;
-        private int speed = 30;
+        private int _maxTravelTime = 5;
+        private int _restDuration = 1;
+        private int _speed = 30;
 
         public override int DistanceTraveled => distanceTraveled;
 
-        protected override int Speed => speed;
+        protected override int Speed => _speed;
 
-        protected override int MaxTravelTime => maxTravelTime;
+        protected override int MaxTravelTime => _maxTravelTime;
 
-        protected override int RestDuration => restDuration;
+        protected override int RestDuration => _restDuration;
 
         public override void Move()
         {
-            if (timeTraveled < maxTravelTime)
+            if (timeTraveled < _maxTravelTime)
             {
-                distanceTraveled += speed;
+                distanceTraveled += _speed;
             }
-            else if (timeTraveled >= maxTravelTime + restDuration)
+            else if (timeTraveled >= _maxTravelTime + _restDuration)
             {
                 timeTraveled = 0;
             }

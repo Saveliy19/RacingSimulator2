@@ -10,30 +10,30 @@ namespace LR1.Vehicles.GroundVehicles
     {
         // + высокая начальная скорость
         // - скорость уменьшается на каждом тике
-        private int maxTravelTime = 15;
-        private int restDuration = 4;
-        private int maxSpeed = 15;
-        private int speed = 15;
+        private int _maxTravelTime = 15;
+        private int _restDuration = 4;
+        private int _maxSpeed = 15;
+        private int _speed = 15;
 
         public override int DistanceTraveled => distanceTraveled;
 
-        protected override int Speed => speed;
+        protected override int Speed => _speed;
 
-        protected override int MaxTravelTime => maxTravelTime;
+        protected override int MaxTravelTime => _maxTravelTime;
 
-        protected override int RestDuration => restDuration;
+        protected override int RestDuration => _restDuration;
 
         public override void Move()
         {
-            if (timeTraveled < maxTravelTime)
+            if (timeTraveled < _maxTravelTime)
             {
-                distanceTraveled += speed;
-                speed -= 1; //скорость уменьшается на каждом тике, затем восстанавливается после отдыха
+                distanceTraveled += _speed;
+                _speed -= 1; //скорость уменьшается на каждом тике, затем восстанавливается после отдыха
             }
-            else if (timeTraveled >= maxTravelTime + restDuration)
+            else if (timeTraveled >= _maxTravelTime + _restDuration)
             {
                 timeTraveled = 0;
-                speed = maxSpeed;
+                _speed = _maxSpeed;
             }
             timeTraveled++;
             //Console.WriteLine($"Дистанция - {distanceTraveled.ToString()} Время{timeTraveled.ToString()}");

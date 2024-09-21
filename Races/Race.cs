@@ -16,8 +16,9 @@ namespace LR1.Races
         // флаг того, что все транспортные средства начали движение
         protected bool isStarted;
 
+
         // время гонки
-        private int raceTime;
+        protected int raceTime;
 
         abstract public int Distance { set; }
 
@@ -25,8 +26,10 @@ namespace LR1.Races
 
         public void StartRace()
         {
+            List<Vehicle> finishedRacers = new List<Vehicle>();
+            int bestResult = 0;
             Console.WriteLine("На старт. Внимание. Марш!");
-            while (winner is null)
+            while (finishedRacers.Count < racers.Count)
             {
                 raceTime++;
                 foreach (Vehicle racer in racers)
@@ -35,15 +38,35 @@ namespace LR1.Races
                     {
                         Console.WriteLine($"Racer {racer.GetType().Name} started!");
                     }
-                    racer.Move();
-                    if (racer.DistanceTraveled >= distance)
+
+                    if (racer.DistanceTraveled < distance)
                     {
-                        winner = racer;
+                        racer.Move();
                     }
+                    else
+                    {
+                        if (winner is null)
+                        {
+                            winner = racer;
+                            bestResult = raceTime;
+                            Console.WriteLine();
+                            Console.WriteLine($"{racer.GetType().Name} FINISHED! Result - {raceTime} ticks");
+                            finishedRacers.Add(racer);
+
+                        }
+                        else if (!finishedRacers.Contains(racer))
+                        {
+                            Console.WriteLine($"{racer.GetType().Name} FINISHED! Result - {raceTime} ticks");
+                            finishedRacers.Add(racer);
+                        }
+                    }
+                    
 }
                 isStarted = true;
+
             }
-            Console.WriteLine($"The winner is {winner.GetType().Name}. Result - {raceTime} ticks");
+            Console.WriteLine();
+            Console.WriteLine($"The winner is {winner.GetType().Name}. Result - {bestResult} ticks");
         }
     }
 }

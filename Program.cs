@@ -27,10 +27,32 @@ namespace LR1
         static void Main(string[] args)
         {
 
+            int choice;
             // выбранные транспортные средства
             Console.WriteLine("Выберите тип гонки: 1 - общая, 2 - наземная, 3 - воздушная");
-            int choice = int.Parse(Console.ReadLine());
 
+            while (true)
+            {
+                try
+                {
+                    choice = Convert.ToInt32(Console.ReadLine());
+
+                    if (choice < 1 || choice > 3)
+                    {
+                        Console.WriteLine("Ошибка: Введите число от 1 до 3.");
+                    }
+                    else
+                    {
+                        break; // Выход из цикла, если ввод корректен
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Введите корректное значение.");
+                }
+            }
+
+            
             Race race;
 
             switch (choice)
@@ -55,24 +77,43 @@ namespace LR1
             
             // Список выбранных ТС
             List<int> vehicles = new List<int>();
-            try
+
+            int vehicleType;
+
+            while (true)
             {
-                while (true)
+
+                string input = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(input))
                 {
-                    string input = Console.ReadLine();
-
-                    if (string.IsNullOrWhiteSpace(input))
+                    break;
+                }
+                else
+                {   while (true)
                     {
-                        break;
+                        try
+                        {
+                            vehicleType = int.Parse(input);
+                            break;
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Введите корректное значение.");
+                            input = Console.ReadLine();
+                        }
                     }
+                }
+                
 
-                    int vehicleType = int.Parse(input);
 
-                    if (vehicles.Contains(vehicleType))
-                    {
-                        Console.WriteLine("Это транспортное средство уже зарегистрировано на гонку! Выберите другое!");
-                    }
-                    else
+                if (vehicles.Contains(vehicleType))
+                {
+                    Console.WriteLine("Это транспортное средство уже зарегистрировано на гонку! Выберите другое!");
+                }
+                else
+                {
+                    try
                     {
                         switch (vehicleType)
                         {
@@ -108,20 +149,49 @@ namespace LR1
                                 FlyingShip flyingShip = new FlyingShip();
                                 race.AddRacer(flyingShip);
                                 break;
+                            default:
+                                Console.WriteLine("Неверный номер транспортного средства.");
+                                continue;
                         }
                         vehicles.Add(vehicleType);
                     }
+                    catch (InvalidOperationException ex) 
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                    
+
+                    
+
                 }
-                Console.WriteLine("Введите длину трассы:");
-                int distance = Convert.ToInt32(Console.ReadLine());
-                race.Distance = distance;
-                race.StartRace();
             }
-            catch (Exception ex)
+            Console.WriteLine("Введите длину трассы:");
+
+            int distance;
+
+            while (true)
             {
-                Console.WriteLine($"Ошибка: {ex.Message}");
-                Console.WriteLine("Нажмите любую клавишу для выхода!");
-            }           
+                try
+                {
+                    distance = Convert.ToInt32(Console.ReadLine());
+                    if (distance < 0)
+                    {
+                        Console.WriteLine("Введите корректную длину");
+                        continue;
+                    }
+                    break;
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Введите корректную длину");
+                }
+            }
+            race.Distance = distance;
+            race.StartRace();       
                     
         }
     }

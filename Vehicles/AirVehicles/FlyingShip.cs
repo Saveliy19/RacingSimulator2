@@ -11,46 +11,44 @@ namespace LR1.Vehicles.AirVehicles
         // + высокая начальная скорость
         // + линейный рост ускорения на каждом шаге
         // - возможно замедление из-за попадания в воздушную яму
-        private int accelerationCoefficient = 0;
-        private int speed = 30;
+        private int _accelerationCoefficient = 0;
+        private int _speed = 30;
 
         Random random = new Random(); //генератор случайных чисел
-        int previousAccelerationCoefficient;
+        private int _previousAccelerationCoefficient;
 
         public override int DistanceTraveled => distanceTraveled;
-        protected override int Speed => speed;
+        protected override int Speed => _speed;
 
-        protected override int AccelerationCoefficient => accelerationCoefficient;
+        protected override int AccelerationCoefficient => _accelerationCoefficient;
 
         public override void Move()
         {
-            if (accelerationCoefficient == 0)
+            if (_accelerationCoefficient == 0)
             {
-                distanceTraveled += speed;
+                distanceTraveled += _speed;
             }
             else
             {
-                int averageAcceleration = (previousAccelerationCoefficient + accelerationCoefficient) / 2;
-                distanceTraveled += speed + (averageAcceleration) / 2;
+                int averageAcceleration = (_previousAccelerationCoefficient + _accelerationCoefficient) / 2;
+                distanceTraveled += _speed + (averageAcceleration) / 2;
             }
-            previousAccelerationCoefficient = accelerationCoefficient;
+            _previousAccelerationCoefficient = _accelerationCoefficient;
 
             if (random.Next(0, 100) < 50) // 50% шанс попадания в яму
             {
                 // ускорение обнуляется
-                accelerationCoefficient = 0;
+                _accelerationCoefficient = 0;
             }
             else
             {
-                accelerationCoefficient += distanceTraveled;
+                _accelerationCoefficient += distanceTraveled;
             }
             //Console.WriteLine($"Ускорение: {accelerationCoefficient.ToString()}");
             
             timeTraveled++;
             //Console.WriteLine($"Дистанция - {distanceTraveled.ToString()} Время {timeTraveled.ToString()}");
             //Console.WriteLine($"Скорость: {speed.ToString()}");
-            
-            Console.WriteLine();
         }
     }
 }

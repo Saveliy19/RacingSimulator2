@@ -12,16 +12,16 @@ namespace LR1.Vehicles.GroundVehicles
         // + средняя скорость
         // - долгое восстановление
         // - нужно время, чтобы встать
-        private int maxTravelTime = 100;
-        private int restDuration = 10;
-        private int speed = 10;
+        private int _maxTravelTime = 100;
+        private int _restDuration = 10;
+        private int _speed = 10;
 
         // время, необходимое избе, чтобы встать после начала гонки
         private int riseTime = 0;
 
-        protected override int RestDuration => restDuration;
-        protected override int MaxTravelTime => maxTravelTime;
-        protected override int Speed => speed;
+        protected override int RestDuration => _restDuration;
+        protected override int MaxTravelTime => _maxTravelTime;
+        protected override int Speed => _speed;
 
         public override int DistanceTraveled => distanceTraveled;
         public override void Move()
@@ -32,11 +32,11 @@ namespace LR1.Vehicles.GroundVehicles
             }
             else
             {
-                if (timeTraveled < maxTravelTime)
+                if (timeTraveled < _maxTravelTime)
                 {
-                    distanceTraveled += speed;
+                    distanceTraveled += _speed;
                 }
-                else if (timeTraveled >= maxTravelTime + restDuration)
+                else if (timeTraveled >= _maxTravelTime + _restDuration)
                 {
                     timeTraveled = 0;
                 }

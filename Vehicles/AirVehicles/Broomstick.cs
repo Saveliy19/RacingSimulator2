@@ -8,18 +8,18 @@ namespace LR1.Vehicles.AirVehicles
 {
     internal class Broomstick: AirVehicle
     {
-        private int accelerationCoefficient = 0;
-        private int speed = 1;
+        private int _accelerationCoefficient = 0;
+        private int _speed = 1;
         public override int DistanceTraveled => distanceTraveled;
-        protected override int Speed => speed;
+        protected override int Speed => _speed;
 
-        protected override int AccelerationCoefficient => accelerationCoefficient;
+        protected override int AccelerationCoefficient => _accelerationCoefficient;
 
         public override void Move()
         {
-            distanceTraveled = speed * timeTraveled + (accelerationCoefficient * timeTraveled * timeTraveled) / 2;
+            distanceTraveled = _speed * timeTraveled + (_accelerationCoefficient * timeTraveled * timeTraveled) / 2;
             timeTraveled++;
-            accelerationCoefficient = distanceTraveled / 2;
+            _accelerationCoefficient = distanceTraveled / 2;
         }
     }
 }

@@ -12,26 +12,26 @@ namespace LR1.Vehicles.AirVehicles
         // - малая начальная скорость
         // - необходимо время на размотку 
         // + квадратичный рост ускорения на каждом шаге
-        private int accelerationCoefficient = 0;
-        private int speed = 4;
+        private int _accelerationCoefficient = 0;
+        private int _speed = 4;
 
         // время, необходимое ковру, чтобы размотаться на старте
-        private int readyTime = 0;
+        private int _readyTime = 0;
         public override int DistanceTraveled => distanceTraveled;
-        protected override int Speed => speed;
+        protected override int Speed => _speed;
 
-        protected override int AccelerationCoefficient => accelerationCoefficient;
+        protected override int AccelerationCoefficient => _accelerationCoefficient;
 
         public override void Move()
         {
-            if (readyTime < 8)
+            if (_readyTime < 8)
             {
-                readyTime++;
+                _readyTime++;
             }
             else
             {
-                distanceTraveled = speed * timeTraveled + (accelerationCoefficient * timeTraveled * timeTraveled) / 2;
-                accelerationCoefficient = (distanceTraveled * distanceTraveled) / 4;
+                distanceTraveled = _speed * timeTraveled + (_accelerationCoefficient * timeTraveled * timeTraveled) / 2;
+                _accelerationCoefficient = (distanceTraveled * distanceTraveled) / 4;
             }
             timeTraveled++;
         }
