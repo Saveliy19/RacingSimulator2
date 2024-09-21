@@ -13,9 +13,9 @@ namespace LR1.Vehicles.GroundVehicles
         // + средняя выносливость
         // + быстрое восстановление
 
-        protected int maxTravelTime = 5;
-        protected int restDuration = 1;
-        protected int speed = 30;
+        private int maxTravelTime = 5;
+        private int restDuration = 1;
+        private int speed = 30;
 
         public override int DistanceTraveled => distanceTraveled;
 

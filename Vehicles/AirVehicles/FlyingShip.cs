@@ -11,8 +11,8 @@ namespace LR1.Vehicles.AirVehicles
         // + высокая начальная скорость
         // + линейный рост ускорения на каждом шаге
         // - возможно замедление из-за попадания в воздушную яму
-        int accelerationCoefficient = 0;
-        int speed = 30;
+        private int accelerationCoefficient = 0;
+        private int speed = 30;
 
         Random random = new Random(); //генератор случайных чисел
         int previousAccelerationCoefficient;

@@ -11,7 +11,7 @@ namespace LR1.Races
     {
         protected int distance;
         protected List<Vehicle> racers = new List<Vehicle>();
-        protected Vehicle winner;
+        protected Vehicle? winner;
         
         // флаг того, что все транспортные средства начали движение
         protected bool isStarted;

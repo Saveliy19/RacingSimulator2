@@ -11,9 +11,9 @@ namespace LR1.Vehicles.GroundVehicles
         // + высокая скорость
         // + быстрое восстановление
         // - быстро выдыхается
-        protected int maxTravelTime = 2;
-        protected int restDuration = 1;
-        protected int speed = 20;
+        private int maxTravelTime = 2;
+        private int restDuration = 1;
+        private int speed = 20;
 
         public override int DistanceTraveled => distanceTraveled;
 

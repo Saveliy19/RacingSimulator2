@@ -12,8 +12,8 @@ namespace LR1.Vehicles.AirVehicles
         // - малая начальная скорость
         // - необходимо время на размотку 
         // + квадратичный рост ускорения на каждом шаге
-        int accelerationCoefficient = 0;
-        int speed = 4;
+        private int accelerationCoefficient = 0;
+        private int speed = 4;
 
         // время, необходимое ковру, чтобы размотаться на старте
         private int readyTime = 0;

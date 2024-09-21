@@ -10,10 +10,10 @@ namespace LR1.Vehicles.GroundVehicles
     {
         // + высокая начальная скорость
         // - скорость уменьшается на каждом тике
-        protected int maxTravelTime = 15;
-        protected int restDuration = 4;
-        protected int maxSpeed = 15;
-        protected int speed = 15;
+        private int maxTravelTime = 15;
+        private int restDuration = 4;
+        private int maxSpeed = 15;
+        private int speed = 15;
 
         public override int DistanceTraveled => distanceTraveled;
 

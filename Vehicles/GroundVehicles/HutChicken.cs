@@ -12,9 +12,9 @@ namespace LR1.Vehicles.GroundVehicles
         // + средняя скорость
         // - долгое восстановление
         // - нужно время, чтобы встать
-        protected int maxTravelTime = 100;
-        protected int restDuration = 10;
-        protected int speed = 10;
+        private int maxTravelTime = 100;
+        private int restDuration = 10;
+        private int speed = 10;
 
         // время, необходимое избе, чтобы встать после начала гонки
         private int riseTime = 0;
